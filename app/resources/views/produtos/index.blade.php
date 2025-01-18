@@ -12,7 +12,7 @@
     <h1 class="titulo-produtos">Lista de Produtos</h1>
 
     <form action="{{ route('produtos.index') }}" method="GET">
-        <select name="tipo_pesquisa"  class="selectfiltro">
+        <select name="tipo_pesquisa" class="selectfiltro">
             <option value="nome">Nome</option>
             <option value="categoria">Categoria</option>
         </select>
@@ -22,30 +22,41 @@
     </form>
 
     <div class="tableindex">
-    <table>
-        <thead>
-            <tr>
-                <th class="tableid">ID</th>
-                <th>Nome</th>
-                <th>Categoria</th>
-                <th>Descrição</th>
-                <th class="tableacoes">Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($produtos as $produto)
-            <tr>
-                <td>{{ $produto->id }}</td>
-                <td>{{ $produto->nome }}</td>
-                <td>{{ $produto->categoria }}</td>
-                <td>{{ $produto->descricao }}</td>
-                <td>
-                    <a href="{{ route('produtos.edit', $produto->id) }}" class="buttonedit">Editar</a>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+        <table>
+            <thead>
+                <tr>
+                    <th class="tableid">ID</th>
+                    <th>Nome</th>
+                    <th>Categoria</th>
+                    <th>Descrição</th>
+                    <th class="tableacoes">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($produtos as $produto)
+                <tr>
+                    <td>{{ $produto->id }}</td>
+                    <td>{{ $produto->nome }}</td>
+                    <td>{{ $produto->categoria }}</td>
+                    <td>{{ $produto->descricao }}</td>
+                    <td>
+                        <a href="{{ route('produtos.edit', $produto->id) }}" class="buttonedit">Editar</a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+        <!-- Links de paginação -->
+        <div class="pagination-container">
+            <p class="pagination-summary">{{ $produtos->firstItem() }} a {{ $produtos->lastItem() }} de {{ $produtos->total() }} produtos</p>
+            <div class="pagination-links">
+                {{ $produtos->links('pagination::simple-bootstrap-4') }}
+            </div>
+        </div>
+
+
+    </div>
+
     </div>
 </body>
 

@@ -32,7 +32,7 @@
         <label for="descricao">Descrição:</label>
         <textarea name="descricao" id="descricao"></textarea><br>
 
-        <button type="submit">Cadastrar</button>
+        <button type="submit" class="buttonancora">Cadastrar</button>
         <a href="{{ route('produtos.index') }}" class="buttonancora">Voltar</a>
     </form>
 </body>

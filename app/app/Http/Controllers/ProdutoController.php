@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Produto;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
+
+Paginator::useBootstrapFive(); // Para usar o estilo do Bootstrap
+
 
 class ProdutoController extends Controller
 {
@@ -19,7 +23,8 @@ class ProdutoController extends Controller
             }
         }
 
-        $produtos = $query->get();
+        // Busca os produtos com paginação, 6 por página
+        $produtos = Produto::paginate(6);
 
         return view('produtos.index', compact('produtos'));
     }
@@ -62,4 +67,22 @@ class ProdutoController extends Controller
 
         return redirect()->route('produtos.index');
     }
+
+    public function destroy($id)
+    {
+        // Encontre o produto pelo ID
+        $produto = Produto::find($id);
+
+        if ($produto) {
+            // Excluir o produto
+            $produto->delete();
+
+            // Redirecionar de volta para a lista de produtos com uma mensagem de sucesso
+            return redirect()->route('produtos.index')->with('success', 'Produto excluído com sucesso!');
+        }
+
+        // Caso o produto não seja encontrado
+        return redirect()->route('produtos.index')->with('error', 'Produto não encontrado!');
+    }
+
 }
