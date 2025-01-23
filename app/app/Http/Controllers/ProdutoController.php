@@ -15,19 +15,21 @@ class ProdutoController extends Controller
     {
         $query = Produto::query();
 
+        // Verifica se há pesquisa e aplica os filtros
         if ($request->has('pesquisa') && $request->pesquisa != '') {
             if ($request->tipo_pesquisa == 'nome') {
-                $query->where('nome', 'like', '%' . $request->pesquisa . '%');
+                $query->where('nome', 'ilike', '%' . $request->pesquisa . '%');
             } elseif ($request->tipo_pesquisa == 'categoria') {
-                $query->where('categoria', $request->pesquisa);
+                $query->where('categoria', 'ilike', '%' . $request->pesquisa . '%');
             }
         }
 
-        // Busca os produtos com paginação, 6 por página
-        $produtos = Produto::paginate(6);
+        // Busca os produtos com paginação, utilizando a query configurada
+        $produtos = $query->paginate(6)->appends($request->all());
 
         return view('produtos.index', compact('produtos'));
     }
+
 
     public function create()
     {
@@ -84,5 +86,4 @@ class ProdutoController extends Controller
         // Caso o produto não seja encontrado
         return redirect()->route('produtos.index')->with('error', 'Produto não encontrado!');
     }
-
 }

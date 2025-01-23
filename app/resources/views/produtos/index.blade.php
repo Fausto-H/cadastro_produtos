@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Produtos</title>
+    <link rel="icon" href="{{ asset('img/iconeproduto.png') }}" type="image/x-icon">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 
@@ -26,19 +27,20 @@
             <thead>
                 <tr>
                     <th class="tableid">ID</th>
-                    <th>Nome</th>
-                    <th>Categoria</th>
-                    <th>Descrição</th>
+                    <th class="tablenome">Nome</th>
+                    <th class="tablecategoria">Categoria</th>
+                    <th class="tabledescricao">Descrição</th>
                     <th class="tableacoes">Ações</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($produtos as $produto)
                 <tr>
-                    <td>{{ $produto->id }}</td>
-                    <td>{{ $produto->nome }}</td>
-                    <td>{{ $produto->categoria }}</td>
-                    <td>{{ $produto->descricao }}</td>
+                    <td>{{ substr($produto->id, 0, 20) }}</td>
+                    <td>{{ strlen($produto->nome) > 20 ? substr($produto->nome, 0, 20) . '...' : $produto->nome }}</td>
+                    <td>{{ strlen($produto->categoria) > 20 ? substr($produto->categoria, 0, 20) . '...' : $produto->categoria }}</td>
+                    <td>{{ strlen($produto->descricao) > 30 ? substr($produto->descricao, 0, 20) . '...' : $produto->descricao }}</td>
+
                     <td>
                         <a href="{{ route('produtos.edit', $produto->id) }}" class="buttonedit">Editar</a>
                     </td>

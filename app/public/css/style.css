@@ -145,6 +145,15 @@ table tr:hover {
 .tableacoes {
     width: 15%; /* Coluna Ações mais estreita */
 }
+.tablenome {
+    width: 20%; /* Coluna Ações mais estreita */
+}
+.tablecategoria {
+    width: 20%; /* Coluna Ações mais estreita */
+}
+.tabledescricao {
+    width: 30%; /* Coluna Ações mais estreita */
+}
 
 table th, table td {
     width: 20%; /* Ajuste conforme necessário para as outras colunas */
