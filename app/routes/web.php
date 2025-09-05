@@ -28,3 +28,7 @@ Route::get('/produtos/{id}/edit', [ProdutoController::class, 'edit'])->name('pro
 
 // Atualiza os dados de um produto específico
 Route::put('/produtos/{id}', [ProdutoController::class, 'update'])->name('produtos.update');
+
+// Deletar produto
+Route::delete('/produtos/{id}', [ProdutoController::class, 'destroy'])->name('produtos.destroy');
+

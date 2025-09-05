@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Produto</title>
+    <link rel="icon" href="{{ asset('img/iconeproduto.png') }}" type="image/x-icon">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
 </head>
@@ -32,7 +33,7 @@
         <label for="descricao">Descrição:</label>
         <textarea name="descricao" id="descricao"></textarea><br>
 
-        <button type="submit">Cadastrar</button>
+        <button type="submit" class="buttonancora">Cadastrar</button>
         <a href="{{ route('produtos.index') }}" class="buttonancora">Voltar</a>
     </form>
 </body>
